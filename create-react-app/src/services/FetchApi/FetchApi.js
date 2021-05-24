@@ -21,12 +21,7 @@ export default class FetchApi {
     const result = await this.request(path, {
       headers: {
         'Content-Type': 'application/json; charset=utf8',
-        'Authorization': "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjpbeyJpZC"+
-                          "I6NCwicGFzc3dvcmQiOiIkMmIkMTAkVUZxMnYycE4wTjBOeUJ5Tzc0UlVST05WbEk5eVpQaHlUUzkuQ0"+
-                          "Q4c1RKaG10OVNBZi9uaS4iLCJlbWFpbCI6InJvbWFuLmhyeWJAbnVyZS51YSIsImZ1bGxOYW1lIjoiUm"+
-                          "9tYW4gSHJ5YiIsImltYWdlIjp7InR5cGUiOiJCdWZmZXIiLCJkYXRhIjpbXX0sImhvdXJzUGxheWVkIj"+
-                          "owLCJpZFRlYW0iOm51bGx9XSwiaWF0IjoxNjIwODE1NzM3LCJleHAiOjE2MjA4MTkzMzd9.SzT4FBVmq"+
-                          "iB3mbpUN7mQ6FS84kyQW0r1Vqqrd3Z5dck",
+        'Authorization': "Bearer " + localStorage.getItem('token'),
       },
     });
     return result;

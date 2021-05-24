@@ -16,7 +16,7 @@ const Layout = ({ children, isLoged }) => {
     <>
       {isLoged && <Header />}
       <Container className={classes.container}>{children}</Container>
-      <Footer />
+      {isLoged && <Footer />}
     </>
   );
 };
