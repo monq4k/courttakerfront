@@ -1,5 +1,5 @@
 const ROUTES = {
-  MAIN: '/courts',
+  MAIN: '/court',
   LOGIN: '/login',
 };
 

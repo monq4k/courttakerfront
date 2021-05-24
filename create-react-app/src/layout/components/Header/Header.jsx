@@ -10,7 +10,7 @@ import {
   Button,
   Box,
 } from '@material-ui/core';
-import { Storefront } from '@material-ui/icons';
+import { SportsBasketball } from '@material-ui/icons';
 
 import { ROUTES } from '../../../constants';
 import useStyles from './HeaderStyles';
@@ -29,13 +29,13 @@ const Header = ({ history }) => {
             className={classes.logoContainer}
             onClick={() => goToLink(ROUTES.MAIN)}
           >
-            <Storefront fontSize="large" />
+            <SportsBasketball fontSize="large" />
             <Typography
               variant="h6"
               component="h1"
               className={classes.headerTitle}
             >
-              Welcome to the shop
+              CourtTaker - Get your court!
             </Typography>
           </Box>
           <Box className={classes.headerActionsContainer}>

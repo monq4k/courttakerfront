@@ -9,4 +9,5 @@ const store = createStore(rootReducer, composeWithDevTools(applyMiddleware(thunk
 
 const persistor = persistStore(store);
 
+// eslint-disable-next-line import/no-anonymous-default-export
 export default { store, persistor };

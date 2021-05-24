@@ -1,13 +1,13 @@
 import { connect } from 'react-redux';
 
-import { requestAllCourts } from '../../../store/courts/actions';
+import { loginRequest } from '../../../store/login/actions';
 
 const mapStateToProps = (state) => ({
-  courtsList: state.courts.courts,
+  isLoged: state.login.isLoged,
 });
 
 const mapDispatchToProps = {
-    requestAllCourts,
+  loginRequest,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps);

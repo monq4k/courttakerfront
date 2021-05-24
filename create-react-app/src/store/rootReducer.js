@@ -3,6 +3,8 @@ import { persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 
 //reducers
+import courtListReducer from './courts/reducer';
+import loginReducer from './login/reducer';
 
 const persistConfig = {
     key: 'root',
@@ -12,8 +14,8 @@ const persistConfig = {
 const rootReducer = persistReducer(
     persistConfig,
     combineReducers({
-        //add court main reducer
-        courts: '',
+        courts: courtListReducer,
+        login: loginReducer,
     })
 );
 
