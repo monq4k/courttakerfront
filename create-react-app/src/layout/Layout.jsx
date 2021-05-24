@@ -6,13 +6,11 @@ import { Container } from '@material-ui/core';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import useStyles from './LayoutStyles';
-// import { isLogedSelector } from '../store/login/selectors';
 
 import '../styles/reset.scss';
 
-const Layout = ({ children }) => {
+const Layout = ({ children, isLoged }) => {
   const classes = useStyles();
-  const isLoged = useSelector((state) => state.login.isLoged);
 
   return (
     <>
