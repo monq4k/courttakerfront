@@ -31,7 +31,7 @@ function Copyright() {
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    height: '100vh',
+    height: '80vh',
   },
   image: {
     backgroundImage: 'url(https://wallpapercave.com/wp/wp2825221.jpg)',

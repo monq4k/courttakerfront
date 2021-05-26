@@ -7,6 +7,7 @@ const useStyles = makeStyles((theme) => ({
   },
   logoContainer: {
     display: 'flex',
+    alignItems: 'center',
     cursor: 'pointer',
   },
   headerTitle: {
@@ -14,6 +15,8 @@ const useStyles = makeStyles((theme) => ({
   },
   headerActionsContainer: {
     display: 'flex',
+    justifyContent: 'center',
+    width: '300px',
   },
   button: {
     display: 'flex',
@@ -28,6 +31,15 @@ const useStyles = makeStyles((theme) => ({
     fontSize: '12px',
     width: '16px',
   },
+  profileWrapper: {
+    display: 'flex',
+    alignItems: 'center',
+    cursor: 'pointer',
+  },
+  profileName: {
+    marginLeft: '5px',
+    fontSize: '16px',
+  }
 }));
 
 export default useStyles;

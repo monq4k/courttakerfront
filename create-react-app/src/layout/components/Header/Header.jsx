@@ -10,14 +10,15 @@ import {
   Button,
   Box,
 } from '@material-ui/core';
-import { SportsBasketball } from '@material-ui/icons';
+import { SportsBasketball, AccountCircle } from '@material-ui/icons';
 
 import { ROUTES } from '../../../constants';
 import useStyles from './HeaderStyles';
 
-const Header = ({ history }) => {
+const Header = ({ history, logoutSuccess, fullName }) => {
   const classes = useStyles();
   const goToLink = (link) => {
+    link.includes('login') && logoutSuccess();
     history.push(link);
   };
 
@@ -39,13 +40,27 @@ const Header = ({ history }) => {
             </Typography>
           </Box>
           <Box className={classes.headerActionsContainer}>
+            <div
+              onClick={() => goToLink(ROUTES.PROFILE)}
+              className={classes.profileWrapper}
+            >
+              <AccountCircle fontSize="large" />
+              <Typography
+                variant="h6"
+                component="h1"
+                className={classes.profileName}
+              >
+                Hi, {fullName.split(' ')[0]}
+              </Typography>
+            </div>
+
             <Button
               variant="contained"
               color="secondary"
               className={classes.button}
               onClick={() => goToLink(ROUTES.LOGIN)}
             >
-              Log in
+              Log out
             </Button>
           </Box>
         </Toolbar>

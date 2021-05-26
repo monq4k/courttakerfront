@@ -13,6 +13,7 @@ const CourtsList = ({
   history,
   courtsList,
   requestAllCourts,
+  getProfileRequest,
 }) => {
   const classes = useStyles();
 
@@ -20,6 +21,7 @@ const CourtsList = ({
 
   useEffect(() => {
     requestAllCourts();
+    getProfileRequest();
   }, []);
 
   useEffect(() => {

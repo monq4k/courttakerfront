@@ -5,6 +5,8 @@ import storage from 'redux-persist/lib/storage';
 //reducers
 import courtListReducer from './courts/reducer';
 import loginReducer from './login/reducer';
+import loadingReducer from './spinner/reducer';
+import userReducer from './user/reducer';
 
 const persistConfig = {
     key: 'root',
@@ -16,6 +18,8 @@ const rootReducer = persistReducer(
     combineReducers({
         courts: courtListReducer,
         login: loginReducer,
+        loading: loadingReducer,
+        user: userReducer,
     })
 );
 

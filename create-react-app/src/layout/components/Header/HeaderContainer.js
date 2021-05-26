@@ -1,14 +1,13 @@
 import { connect } from 'react-redux';
 
-import { loginRequest } from '../store/login/actions';
+import { logoutSuccess } from '../../../store/login/actions';
 
 const mapStateToProps = (state) => ({
-  isLoged: state.login.isLoged,
-  isLoading: state.loading.isLoading,
+  fullName: state.user.user.fullName,
 });
 
 const mapDispatchToProps = {
-  loginRequest,
+  logoutSuccess,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps);
