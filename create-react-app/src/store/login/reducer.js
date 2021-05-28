@@ -4,11 +4,13 @@ import {
   loginRequestSuccess,
   logoutSuccess,
   signUpRequestSuccess,
+  changeRememberMeSuccess,
 } from './actions';
 
 const initialState = {
   id: 0,
   isLoged: false,
+  isRememberMe: false,
 };
 
 const loginReducer = handleActions(
@@ -24,6 +26,11 @@ const loginReducer = handleActions(
     [logoutSuccess]: (state) => ({
       ...state,
       isLoged: false,
+      isRememberMe: false,
+    }),
+    [changeRememberMeSuccess]: (state, action) => ({
+      ...state,
+      isRememberMe: action.payload,
     }),
   },
   initialState,

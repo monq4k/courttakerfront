@@ -60,7 +60,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const LoginPage = ({history, loginRequest, logoutSuccess, signUpRequest}) => {
+const LoginPage = ({history, loginRequest, logoutSuccess, signUpRequest, isRememberMe, changeRememberMeSuccess}) => {
   const classes = useStyles();
   const [isLoginForm, setIsLoginForm] = useState(true);
   const [email, setEmail] = useState('');
@@ -101,7 +101,15 @@ const LoginPage = ({history, loginRequest, logoutSuccess, signUpRequest}) => {
     })
   };
 
+  const handleRememberCheckBox = (e) => {
+    changeRememberMeSuccess(e.target.checked);
+  };
+
   useEffect(() => {
+    if (isRememberMe) { 
+      history.push(`${ROUTES.MAIN}`);
+      return;
+    }
     logoutSuccess();
   }, []);
 
@@ -144,7 +152,7 @@ const LoginPage = ({history, loginRequest, logoutSuccess, signUpRequest}) => {
               onChange={onChangePassword}
             />
             <FormControlLabel
-              control={<Checkbox value="remember" color="primary" />}
+              control={<Checkbox value="remember" color="primary" onChange={handleRememberCheckBox} />}
               label="Remember me"
             />
             <Button

@@ -64,13 +64,13 @@ const CourtItem = ({
         <CardActions className={classes.cardFooter}>
           <Box className={classes.cardFooterActions}>
             <Button
-              className={classes.cardAddToCartButton}
-              // onClick={() => handleAddOrRemoveToCart()}
+              className={classes.cardGoToCourtButton}
+              onClick={() => goToCourtPage(court.id)}
               color='secondary'
               variant="contained"
               size="small"
             >
-              Забронювати
+              Перейти на сторiнку майданчику
             </Button>
           </Box>
         </CardActions>

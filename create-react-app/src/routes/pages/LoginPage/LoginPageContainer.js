@@ -1,9 +1,13 @@
 import { connect } from 'react-redux';
 
-import { loginRequest, logoutSuccess, signUpRequest } from '../../../store/login/actions';
+import { loginRequest, logoutSuccess, signUpRequest, changeRememberMeSuccess } from '../../../store/login/actions';
+
+const mapStateToProps = (state) => ({
+  isRememberMe: state.login.isRememberMe,
+});
 
 const mapDispatchToProps = {
-  loginRequest, logoutSuccess, signUpRequest
+  loginRequest, logoutSuccess, signUpRequest, changeRememberMeSuccess
 };
 
-export default connect(null, mapDispatchToProps);
+export default connect(mapStateToProps, mapDispatchToProps);

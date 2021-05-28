@@ -6,3 +6,8 @@ export const courtListSelector = createSelector(
   [courtSelector],
   (courts) => courts.courts,
 );
+
+export const courtSelector = createSelector(
+  [courtSelector],
+  (courts) => courts.court,
+);

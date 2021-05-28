@@ -6,3 +6,8 @@ export const isLogedtSelector = createSelector(
   [loginSelector],
   (login) => login.isLoged,
 );
+
+export const isRememberMeSelector = createSelector(
+  [loginSelector],
+  (login) => login.isRememberMe,
+);

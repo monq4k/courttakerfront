@@ -23,6 +23,10 @@ const Profile = ({
 }) => {
   const classes = useStyles();
 
+  const handleGoToTeamPageClick = () => {
+    history.push(ROUTES.TEAM);
+  };
+
   return (
     <>
       <Container maxWidth="lg" className={classes.root}>
@@ -68,7 +72,7 @@ const Profile = ({
                 </Typography>
               </CardContent>
               <CardActions className={classes.profileCardActions}>
-                <Button variant="contained" color="secondary">
+                <Button variant="contained" color="secondary" onClick={handleGoToTeamPageClick}>
                   Team Page
                 </Button>
                 <Button variant="contained" color="primary">

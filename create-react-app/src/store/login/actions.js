@@ -19,6 +19,10 @@ export const logoutSuccess = createAction(
   actionTypes.LOGOUT,
 );
 
+export const changeRememberMeSuccess = createAction(
+  actionTypes.CHANGE_REMEMBER_ME,
+);
+
 export const loginRequest = ({email, password}) => async (
   dispatch,
 ) => {

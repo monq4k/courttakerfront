@@ -36,6 +36,7 @@ const CourtsList = ({
       <Grid container spacing={3} className={classes.root}>
         {(contentToRender.map((card) => (
           <CourtItem
+            xs={6} sm={12}
             key={card.id}
             history={history}
             court={card}

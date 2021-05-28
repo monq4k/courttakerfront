@@ -26,9 +26,8 @@ const useStyles = makeStyles({
     height: '50px',
   },
   cardFooter: {
-    padding: '16px',
     display: 'flex',
-    justifyContent: 'space-between',
+    justifyContent: 'center',
     alignItems: 'center',
   },
   cardPrice: {
@@ -37,17 +36,12 @@ const useStyles = makeStyles({
   },
   cardFooterActions: {
     display: 'flex',
-    justifyContent: 'space-between',
-    width: '215px',
+    justifyContent: 'center',
+    width: '315px',
   },
-  cardFavoriteButton: {
-    border: '1px solid #000',
-    borderRadius: '30px',
-    cursor: 'pointer',
-  },
-  cardAddToCartButton: {
-    width: '155px',
-  },
+  cardGoToCourtButton: {
+   width: '300px', 
+  }
 });
 
 export default useStyles;
