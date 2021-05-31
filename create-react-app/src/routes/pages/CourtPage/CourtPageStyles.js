@@ -52,9 +52,18 @@ const useStyles = makeStyles({
   profileCardActions: {
     display: 'flex',
     flexDirection: 'column',
-    justifyContent: 'space-between',
     alignItems: 'center',
     height: '25%',
+  },
+  profileFirstButton: {
+    marginBottom: '15px',
+  },
+  modalButtonsContainer: {
+    display: 'flex',
+    flexDirection: 'column',
+  },
+  modalButton: {
+    margin: '5px',
   }
 });
 
