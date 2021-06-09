@@ -1,5 +1,7 @@
-import React, { useEffect, useState } from 'react';
-import { withRouter, useParams } from 'react-router-dom';
+import React, { useEffect, useState } from "react";
+import { withRouter, useParams } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 import {
   Card,
@@ -9,17 +11,39 @@ import {
   Typography,
   Button,
   Box,
-} from '@material-ui/core';
+} from "@material-ui/core";
 
-import imageFallBack from '../../../assets/images/fallBack.jpg';
-import Modal from '../../../components/Modal';
+import imageFallBack from "../../../assets/images/fallBack.jpg";
+import Modal from "../../../components/Modal";
 
-import useStyles from './CourtPageStyles';
+import useStyles from "./CourtPageStyles";
 
-const CourtPage = ({ history, getOneCourtRequest, court }) => {
+const CourtPage = ({ history, getOneCourtRequest, court, user }) => {
   const classes = useStyles();
+  const [buttonsToRender, setButtonsToRender] = useState();
   const [contentToRender, setContentToRender] = useState({});
-  
+  const notifyError = () =>
+    toast.error("⚠️ You can`t pick more than 2 hours of play!", {
+      position: "top-right",
+      autoClose: 2000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
+
+  const notifySuccess = () =>
+    toast.success("✅ You booked a court!", {
+      position: "top-right",
+      autoClose: 2000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
+
   const [timeButtons, setTimeButtons] = useState([]);
   const [timeButtonsResult, setTimeButtonsResult] = useState([]);
 
@@ -29,15 +53,20 @@ const CourtPage = ({ history, getOneCourtRequest, court }) => {
 
   const handleOpenBookModal = () => {
     setOpen(true);
+    initButtonsList();
+    renderButtons();
   };
 
   const handleCloseBookModal = () => {
     setOpen(false);
+    initButtonsList();
+    setTimeButtonsResult([]);
   };
 
   useEffect(() => {
     getOneCourtRequest(id);
     initButtonsList();
+    renderButtons();
   }, []);
 
   useEffect(() => {
@@ -51,13 +80,43 @@ const CourtPage = ({ history, getOneCourtRequest, court }) => {
   const initButtonsList = () => {
     const result = [];
     for (let i = 0; i < 12; i++) {
-      result[i] = {time: `${7 + i}:00`, checked: false};
+      result[i] = { time: `${7 + i}:00`, checked: false };
     }
     setTimeButtons(result);
   };
 
+  const renderButtons = () => {
+    const result = timeButtons.map((button, index) => {
+      return (
+        <Button
+          variant="contained"
+          key={index}
+          className={classes.modalButton}
+          onClick={() => handleTimeButtonClicked(index)}
+          color={button.checked ? "secondary" : `inherit`}
+        >{`${button.time}`}</Button>
+      );
+    });
+    setButtonsToRender(result);
+  };
+
   const handleTimeButtonClicked = (index) => {
     timeButtons[index].checked = !timeButtons[index].checked;
+    const result = timeButtons
+      .filter((button) => !!button.checked)
+      .map((button) => button.time);
+    if (result.length > 2) {
+      notifyError();
+      return;
+    }
+    setTimeButtonsResult(result);
+    renderButtons();
+  };
+
+  const handloSubmitTimeClick = () => {
+    localStorage.setItem('bookedCourts', timeButtonsResult);
+    notifySuccess();
+    setOpen(false);
   };
 
   return (
@@ -132,19 +191,17 @@ const CourtPage = ({ history, getOneCourtRequest, court }) => {
         <Typography gutterBottom className={classes.modalDescription}>
           You can pick not more than 2 hours for booking this court.
         </Typography>
-        <Box className={classes.modalButtonsContainer}>
-          {timeButtons.map((button, index) => {
-            return (
-              <Button
-                variant="contained"
-                className={classes.modalButton}
-                onClick={() => handleTimeButtonClicked(index)}
-                color={button.checked ? 'primary' : `inherit`}
-              >{`${button.time}`}</Button>
-            );
-          })}
-        </Box>
+        <Box className={classes.modalButtonsContainer}>{buttonsToRender}</Box>
+        <Button
+          variant="contained"
+          color="secondary"
+          className={classes.modalSubmitButton}
+          onClick={handloSubmitTimeClick}
+        >
+          Пiдтвердити бронювання
+        </Button>
       </Modal>
+      <ToastContainer />
     </>
   );
 };

@@ -4,7 +4,7 @@ import { withRouter } from 'react-router-dom';
 
 import { Grid } from '@material-ui/core';
 
-import ProductSlider from './components/CourtSlider';
+import CourtSlider from './components/CourtSlider';
 import CourtItem from './components/CourtItem';
 
 import useStyles from './CourtsListStyles';
@@ -30,7 +30,7 @@ const CourtsList = ({
 
   return (
     <>
-      <ProductSlider
+      <CourtSlider
         items={courtsList.filter((court) => court.id < 115).map((court) => court.image)}
       />
       <Grid container spacing={3} className={classes.root}>

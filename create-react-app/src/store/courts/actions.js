@@ -7,12 +7,12 @@ import { ROUTES } from '../../constants';
 
 import { changeLoaderState } from '../spinner/actions';
 
-export const fetchCourtsSuccess = createAction(
-  actionTypes.FETCH_COURTS_SUCCESS,
-);
-
 export const fetchOneCourtSuccess = createAction(
   actionTypes.GET_ONE_COURT_INFO_SUCCESS,
+);
+
+export const fetchCourtsSuccess = createAction(
+  actionTypes.FETCH_COURTS_SUCCESS,
 );
 
 export const requestAllCourts = () => async (

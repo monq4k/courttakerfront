@@ -64,6 +64,9 @@ const useStyles = makeStyles({
   },
   modalButton: {
     margin: '5px',
+  },
+  modalSubmitButton: {
+    marginTop: '15px',
   }
 });
 

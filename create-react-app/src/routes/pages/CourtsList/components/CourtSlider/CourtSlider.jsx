@@ -7,7 +7,7 @@ import imageFallBack from '../../../../../assets/images/fallBack.jpg';
 
 import './styles.scss';
 
-const ProductSlider = ({ items }) => {
+const CourtSlider = ({ items }) => {
   const settings = {
     dots: true,
     infinite: true,
@@ -34,8 +34,8 @@ const ProductSlider = ({ items }) => {
   );
 };
 
-ProductSlider.propTypes = {
+CourtSlider.propTypes = {
   items: PropTypes.arrayOf(PropTypes.string).isRequired,
 };
 
-export default ProductSlider;
+export default CourtSlider;
