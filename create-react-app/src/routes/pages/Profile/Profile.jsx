@@ -73,10 +73,10 @@ const Profile = ({
               </CardContent>
               <CardActions className={classes.profileCardActions}>
                 <Button variant="contained" color="secondary" onClick={handleGoToTeamPageClick}>
-                  Team Page
+                  Сторiнка команд
                 </Button>
                 <Button variant="contained" color="primary">
-                  Edit Profile
+                  Мої бронювання
                 </Button>
               </CardActions>
             </Card>

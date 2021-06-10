@@ -11,6 +11,22 @@ export const getProfileSuccess = createAction(
   actionTypes.GET_PROFILE,
 );
 
+export const bookCourtSuccess = createAction(
+  actionTypes.BOOK_COURT,
+);
+
+export const bookCourtRequest = (book) => async (dispatch) => {
+  dispatch(bookCourtSuccess({book}));
+};
+
+export const cancelBookingCourtSuccess = createAction(
+  actionTypes.CANCEL_BOOKING,
+);
+
+export const cancelBookingCourtRequest = (idCourt, idUser) => async (dispatch) => {
+  dispatch(cancelBookingCourtSuccess({idCourt, idUser}));
+};
+
 export const getProfileRequest = () => async (
   dispatch, getState
 ) => {

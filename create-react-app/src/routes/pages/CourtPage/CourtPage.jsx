@@ -18,8 +18,9 @@ import Modal from "../../../components/Modal";
 
 import useStyles from "./CourtPageStyles";
 
-const CourtPage = ({ history, getOneCourtRequest, court, user }) => {
+const CourtPage = ({ history, getOneCourtRequest, court, user, bookedCourtes, bookCourtRequest, cancelBookingCourtRequest }) => {
   const classes = useStyles();
+  const [isCourtBooked, setIsCourtBooked] = useState(false);
   const [buttonsToRender, setButtonsToRender] = useState();
   const [contentToRender, setContentToRender] = useState({});
   const notifyError = () =>
@@ -33,8 +34,8 @@ const CourtPage = ({ history, getOneCourtRequest, court, user }) => {
       progress: undefined,
     });
 
-  const notifySuccess = () =>
-    toast.success("✅ You booked a court!", {
+  const notifySuccess = (message) =>
+    toast.success(`✅ ${message}`, {
       position: "top-right",
       autoClose: 2000,
       hideProgressBar: false,
@@ -64,6 +65,7 @@ const CourtPage = ({ history, getOneCourtRequest, court, user }) => {
   };
 
   useEffect(() => {
+    isCourtBookedFilter();
     getOneCourtRequest(id);
     initButtonsList();
     renderButtons();
@@ -72,6 +74,15 @@ const CourtPage = ({ history, getOneCourtRequest, court, user }) => {
   useEffect(() => {
     setContentToRender(court);
   }, [court]);
+
+  const isCourtBookedFilter = () => {
+    if (!bookedCourtes) {
+      return;
+    }
+    const result = !!bookedCourtes.find((userCourt) => userCourt.idCourt === +id && userCourt.idUser === user.id);
+    
+    setIsCourtBooked(result);
+  }
 
   const onHandleImageLoadError = (e) => {
     e.target.src = imageFallBack;
@@ -91,6 +102,7 @@ const CourtPage = ({ history, getOneCourtRequest, court, user }) => {
         <Button
           variant="contained"
           key={index}
+          disabled={!!bookedCourtes.find((bookedCourt) => bookedCourt.idCourt === +id && bookedCourt.time.includes(button.time))}
           className={classes.modalButton}
           onClick={() => handleTimeButtonClicked(index)}
           color={button.checked ? "secondary" : `inherit`}
@@ -113,11 +125,23 @@ const CourtPage = ({ history, getOneCourtRequest, court, user }) => {
     renderButtons();
   };
 
-  const handloSubmitTimeClick = () => {
-    localStorage.setItem('bookedCourts', timeButtonsResult);
-    notifySuccess();
+  const handleSubmitTimeClick = () => {
+    const bookResult = {
+      idUser: user.id,
+      idCourt: +id,
+      time: timeButtonsResult,
+    }
+    bookCourtRequest(bookResult);
+    setIsCourtBooked(true);
+    notifySuccess("You booked a court!");
     setOpen(false);
   };
+
+  const handleCancelBookingClick = () => {
+    cancelBookingCourtRequest(+id, user.id);
+    setIsCourtBooked(false);
+    notifySuccess("You cancel booking this court!");
+  }
 
   return (
     <>
@@ -141,46 +165,44 @@ const CourtPage = ({ history, getOneCourtRequest, court, user }) => {
             </Box>
             <Card className={classes.profileInfoContainer}>
               <CardContent className={classes.cardContent}>
-                <Typography
+                <div
                   className={classes.profileInfoTextContainer}
-                  gutterBottom
                 >
                   Name:
                   <Typography className={classes.profileInfoText} gutterBottom>
                     {`${contentToRender.name}`}
                   </Typography>
-                </Typography>
-                <Typography
+                </div>
+                <div
                   className={classes.profileInfoTextContainer}
-                  gutterBottom
                 >
                   Address:
                   <Typography className={classes.profileInfoText} gutterBottom>
                     {`${contentToRender.address}`}
                   </Typography>
-                </Typography>
-                <Typography
+                </div>
+                <div
                   className={classes.profileInfoTextContainer}
-                  gutterBottom
                 >
                   Час роботи:
                   <Typography className={classes.profileInfoText} gutterBottom>
                     07:00 - 19:00
                   </Typography>
-                </Typography>
+                </div>
               </CardContent>
               <CardActions className={classes.profileCardActions}>
                 <Button
                   variant="contained"
                   color="secondary"
+                  disabled={isCourtBooked}
                   className={classes.profileFirstButton}
                   onClick={handleOpenBookModal}
                 >
                   Забронювати
                 </Button>
-                <Button variant="contained" color="primary">
+                {isCourtBooked && <Button variant="contained" color="primary" onClick={handleCancelBookingClick}>
                   Скасувати бронювання
-                </Button>
+                </Button>}
               </CardActions>
             </Card>
           </Box>
@@ -196,7 +218,7 @@ const CourtPage = ({ history, getOneCourtRequest, court, user }) => {
           variant="contained"
           color="secondary"
           className={classes.modalSubmitButton}
-          onClick={handloSubmitTimeClick}
+          onClick={handleSubmitTimeClick}
         >
           Пiдтвердити бронювання
         </Button>
