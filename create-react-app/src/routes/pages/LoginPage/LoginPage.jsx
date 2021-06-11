@@ -124,7 +124,7 @@ const LoginPage = ({history, loginRequest, logoutSuccess, signUpRequest, isRemem
             <LockOutlinedIcon />
           </Avatar>
           <Typography component="h1" variant="h5">
-            Sign in
+            Авторизация
           </Typography>
           <form className={classes.form} noValidate>
             <TextField
@@ -133,7 +133,7 @@ const LoginPage = ({history, loginRequest, logoutSuccess, signUpRequest, isRemem
               required
               fullWidth
               id="email"
-              label="Email Address"
+              label="Електронный адрес"
               name="email"
               onChange={onChangeEmail}
               autoComplete="email"
@@ -145,7 +145,7 @@ const LoginPage = ({history, loginRequest, logoutSuccess, signUpRequest, isRemem
               required
               fullWidth
               name="password"
-              label="Password"
+              label="Пароль"
               type="password"
               id="password"
               autoComplete="current-password"
@@ -153,7 +153,7 @@ const LoginPage = ({history, loginRequest, logoutSuccess, signUpRequest, isRemem
             />
             <FormControlLabel
               control={<Checkbox value="remember" color="primary" onChange={handleRememberCheckBox} />}
-              label="Remember me"
+              label="Запомнить меня"
             />
             <Button
               type="button"
@@ -163,17 +163,12 @@ const LoginPage = ({history, loginRequest, logoutSuccess, signUpRequest, isRemem
               onClick={handleLoginClick}
               className={classes.submit}
             >
-              Sign In
+              Авторизироваться
             </Button>
             <Grid container>
               <Grid item xs>
-                <Link href="#" variant="body2">
-                  Forgot password?
-                </Link>
-              </Grid>
-              <Grid item>
                 <Link onClick={handleChangeForms} variant="body2">
-                  {"Don't have an account? Sign Up"}
+                  {"У вас еще нет аккаунта? Зарегестрируйтесь!"}
                 </Link>
               </Grid>
             </Grid>
@@ -191,7 +186,7 @@ const LoginPage = ({history, loginRequest, logoutSuccess, signUpRequest, isRemem
                 <LockOutlinedIcon />
               </Avatar>
               <Typography component="h1" variant="h5">
-                Sign up
+                Регистрация
               </Typography>
               <form className={classes.form} noValidate>
                 <Grid container spacing={2}>
@@ -203,7 +198,7 @@ const LoginPage = ({history, loginRequest, logoutSuccess, signUpRequest, isRemem
                       required
                       fullWidth
                       id="firstName"
-                      label="First Name"
+                      label="Имя"
                       onChange={onChangeFirstName}
                       autoFocus
                     />
@@ -214,7 +209,7 @@ const LoginPage = ({history, loginRequest, logoutSuccess, signUpRequest, isRemem
                       required
                       fullWidth
                       id="lastName"
-                      label="Last Name"
+                      label="Фамилия"
                       name="lastName"
                       onChange={onChangeSecondName}
                       autoComplete="lname"
@@ -226,7 +221,7 @@ const LoginPage = ({history, loginRequest, logoutSuccess, signUpRequest, isRemem
                       required
                       fullWidth
                       id="email"
-                      label="Email Address"
+                      label="Електронный адресс"
                       name="email"
                       autoComplete="email"
                       onChange={onChangeEmail}
@@ -238,7 +233,7 @@ const LoginPage = ({history, loginRequest, logoutSuccess, signUpRequest, isRemem
                       required
                       fullWidth
                       name="password"
-                      label="Password"
+                      label="Пароль"
                       type="password"
                       id="password"
                       autoComplete="current-password"
@@ -254,12 +249,12 @@ const LoginPage = ({history, loginRequest, logoutSuccess, signUpRequest, isRemem
                   onClick={handleSignUpClick}
                   className={classes.submit}
                 >
-                  Sign Up
+                  Зарегестрироваться
                 </Button>
                 <Grid container justify="flex-end">
                   <Grid item>
                     <Link onClick={handleChangeForms} variant="body2">
-                      Already have an account? Sign in
+                      Уже есть аккаунт? Авторизируйтесь!
                     </Link>
                   </Grid>
                 </Grid>

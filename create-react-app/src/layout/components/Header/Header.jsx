@@ -36,7 +36,7 @@ const Header = ({ history, logoutSuccess, fullName }) => {
               component="h1"
               className={classes.headerTitle}
             >
-              CourtTaker - Get your court!
+              CourtTaker - Играй с комфортом!
             </Typography>
           </Box>
           <Box className={classes.headerActionsContainer}>
@@ -50,7 +50,7 @@ const Header = ({ history, logoutSuccess, fullName }) => {
                 component="h1"
                 className={classes.profileName}
               >
-                Hi, {fullName.split(' ')[0]}
+                Привет, {fullName.split(' ')[0]}
               </Typography>
             </div>
 
@@ -60,7 +60,7 @@ const Header = ({ history, logoutSuccess, fullName }) => {
               className={classes.button}
               onClick={() => goToLink(ROUTES.LOGIN)}
             >
-              Log out
+              Выйти
             </Button>
           </Box>
         </Toolbar>

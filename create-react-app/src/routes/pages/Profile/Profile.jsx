@@ -23,8 +23,8 @@ const Profile = ({
 }) => {
   const classes = useStyles();
 
-  const handleGoToTeamPageClick = () => {
-    history.push(ROUTES.TEAM);
+  const handleGoToMyBooksClick = () => {
+    history.push(ROUTES.USER_COURTS);
   };
 
   return (
@@ -32,7 +32,7 @@ const Profile = ({
       <Container maxWidth="lg" className={classes.root}>
         <Box className={classes.profileContainer}>
           <Typography variant="h2" component="h2" gutterBottom>
-            Profile Info
+            Профиль
           </Typography>
           <Box className={classes.profileSectionContainer}>
             <Box border={2} borderRadius={30} className={classes.profileImageContainer}>
@@ -40,43 +40,40 @@ const Profile = ({
             </Box>
             <Card className={classes.profileInfoContainer}>
               <CardContent className={classes.cardContent}>
-                <Typography className={classes.profileInfoTextContainer} gutterBottom>
-                  First Name:
+                <div className={classes.profileInfoTextContainer} >
+                  Имя:
                   <Typography className={classes.profileInfoText} gutterBottom>
                     {`${user.fullName.split(' ')[0]}`}
                   </Typography>
-                </Typography>
-                <Typography className={classes.profileInfoTextContainer} gutterBottom>
-                  Second Name:
+                </div>
+                <div className={classes.profileInfoTextContainer} >
+                  Фамилия:
                   <Typography className={classes.profileInfoText} gutterBottom>
                   {`${user.fullName.split(' ')[1]}`}
                   </Typography>
-                </Typography>
-                <Typography className={classes.profileInfoTextContainer} gutterBottom>
-                  Email:
+                </div>
+                <div className={classes.profileInfoTextContainer} >
+                  Почта:
                   <Typography className={classes.profileInfoText} gutterBottom>
                   {`${user.email}`}
                   </Typography>
-                </Typography>
-                <Typography className={classes.profileInfoTextContainer} gutterBottom>
-                  Hours played:
+                </div>
+                <div className={classes.profileInfoTextContainer} >
+                  Часов отыграно:
                   <Typography className={classes.profileInfoText} gutterBottom>
                   {`${user.hoursPlayed}`}
                   </Typography>
-                </Typography>
-                <Typography className={classes.profileInfoTextContainer} gutterBottom>
-                  Team:
+                </div>
+                <div className={classes.profileInfoTextContainer} >
+                  Команда:
                   <Typography className={classes.profileInfoText} gutterBottom>
                   {`${user.team ? user.team.name : 'no team'}`}
                   </Typography>
-                </Typography>
+                </div>
               </CardContent>
               <CardActions className={classes.profileCardActions}>
-                <Button variant="contained" color="secondary" onClick={handleGoToTeamPageClick}>
-                  Сторiнка команд
-                </Button>
-                <Button variant="contained" color="primary">
-                  Мої бронювання
+                <Button variant="contained" color="primary" onClick={handleGoToMyBooksClick}>
+                  Мои бронирования
                 </Button>
               </CardActions>
             </Card>

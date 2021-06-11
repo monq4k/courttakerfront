@@ -24,7 +24,7 @@ const CourtPage = ({ history, getOneCourtRequest, court, user, bookedCourtes, bo
   const [buttonsToRender, setButtonsToRender] = useState();
   const [contentToRender, setContentToRender] = useState({});
   const notifyError = () =>
-    toast.error("⚠️ You can`t pick more than 2 hours of play!", {
+    toast.error("⚠️ Вы не можете выбрать больше чем 2 часа!", {
       position: "top-right",
       autoClose: 2000,
       hideProgressBar: false,
@@ -133,14 +133,14 @@ const CourtPage = ({ history, getOneCourtRequest, court, user, bookedCourtes, bo
     }
     bookCourtRequest(bookResult);
     setIsCourtBooked(true);
-    notifySuccess("You booked a court!");
+    notifySuccess("Вы забронировали площадку!");
     setOpen(false);
   };
 
   const handleCancelBookingClick = () => {
     cancelBookingCourtRequest(+id, user.id);
     setIsCourtBooked(false);
-    notifySuccess("You cancel booking this court!");
+    notifySuccess("Бронирование площадки успешно отменено!");
   }
 
   return (
@@ -148,7 +148,7 @@ const CourtPage = ({ history, getOneCourtRequest, court, user, bookedCourtes, bo
       <Container maxWidth="lg" className={classes.root}>
         <Box className={classes.profileContainer}>
           <Typography variant="h2" component="h2" gutterBottom>
-            Court Info
+            Информация про площадку:
           </Typography>
           <Box className={classes.profileSectionContainer}>
             <Box
@@ -168,7 +168,7 @@ const CourtPage = ({ history, getOneCourtRequest, court, user, bookedCourtes, bo
                 <div
                   className={classes.profileInfoTextContainer}
                 >
-                  Name:
+                  Название:
                   <Typography className={classes.profileInfoText} gutterBottom>
                     {`${contentToRender.name}`}
                   </Typography>
@@ -176,7 +176,7 @@ const CourtPage = ({ history, getOneCourtRequest, court, user, bookedCourtes, bo
                 <div
                   className={classes.profileInfoTextContainer}
                 >
-                  Address:
+                  Адрес:
                   <Typography className={classes.profileInfoText} gutterBottom>
                     {`${contentToRender.address}`}
                   </Typography>
@@ -184,7 +184,7 @@ const CourtPage = ({ history, getOneCourtRequest, court, user, bookedCourtes, bo
                 <div
                   className={classes.profileInfoTextContainer}
                 >
-                  Час роботи:
+                  Время работы:
                   <Typography className={classes.profileInfoText} gutterBottom>
                     07:00 - 19:00
                   </Typography>
@@ -198,10 +198,10 @@ const CourtPage = ({ history, getOneCourtRequest, court, user, bookedCourtes, bo
                   className={classes.profileFirstButton}
                   onClick={handleOpenBookModal}
                 >
-                  Забронювати
+                  Забронировать
                 </Button>
                 {isCourtBooked && <Button variant="contained" color="primary" onClick={handleCancelBookingClick}>
-                  Скасувати бронювання
+                  Отменить бронирование
                 </Button>}
               </CardActions>
             </Card>
@@ -209,9 +209,9 @@ const CourtPage = ({ history, getOneCourtRequest, court, user, bookedCourtes, bo
         </Box>
       </Container>
       <Modal isOpen={isOpen} handleClose={handleCloseBookModal}>
-        <h3 className={classes.modalTItle}>Pick Your Time!</h3>
+        <h3 className={classes.modalTItle}>Выберите время для бронирования!</h3>
         <Typography gutterBottom className={classes.modalDescription}>
-          You can pick not more than 2 hours for booking this court.
+          Вы можете забронировать площадку не больше чем 2 часа!.
         </Typography>
         <Box className={classes.modalButtonsContainer}>{buttonsToRender}</Box>
         <Button
@@ -220,7 +220,7 @@ const CourtPage = ({ history, getOneCourtRequest, court, user, bookedCourtes, bo
           className={classes.modalSubmitButton}
           onClick={handleSubmitTimeClick}
         >
-          Пiдтвердити бронювання
+          Подтвердить бронирование
         </Button>
       </Modal>
       <ToastContainer />

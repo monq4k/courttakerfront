@@ -6,6 +6,7 @@ import CourtPageConnect from './pages/CourtPage';
 import LoginPageConnect from './pages/LoginPage';
 import ProfileConnect from './pages/Profile';
 import TeamConnect from './pages/Team';
+import UserCourtsPageConnect from './pages/UserCourtsPage';
 
 import { ROUTES } from '../constants';
 
@@ -16,6 +17,7 @@ const Routes = () => (
     <Route exact path={ROUTES.LOGIN} component={LoginPageConnect} />
     <Route exact path={ROUTES.PROFILE} component={ProfileConnect} />
     <Route exact path={ROUTES.TEAM} component={TeamConnect} />
+    <Route exact path={ROUTES.USER_COURTS} component={UserCourtsPageConnect} />
     <Redirect exact from="/" to={ROUTES.LOGIN} />
   </Switch>
 );
